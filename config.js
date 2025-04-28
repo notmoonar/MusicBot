@@ -1,19 +1,22 @@
+require("dotenv").config();
+
 module.exports = {
-    TOKENS: [""],
-    ownerID: [""], //write your discord user id. example: ["id"] or ["id1","id2"]
+    TOKENS: [process.env.TOKEN],
+    ownerID: [process.env.OWNER_ID], //write your discord user id. example: ["id"] or ["id1","id2"]
     botInvite: "", //write your discord bot invite.
     supportServer: "", //write your discord bot support server invite.
-    mongodbURL: "", //write your mongodb url.
-    status: '❤️ codeshare.me',
+    mongodbURL: process.env.MONGODB_URL, //write your mongodb url.
+    status: '🎤 Singing',
     commandsDir: './commands', //Please don't touch
     language: "en", //ar, de, en, es, fr, id, it, ja, nl, pt, ru, tr, zh_TW
-    embedColor: "ffa954", //hex color code
+    embedColor: "915f3f", //hex color code
     errorLog: "", //write your discord error log channel id.
 
+    
 
     playlistSettings: {
-        maxPlaylist: 10, //max playlist count
-        maxMusic: 75, //max music count
+        maxPlaylist: 5, //max playlist count
+        maxMusic: 100, //max music count
     },
 
 
@@ -24,23 +27,14 @@ module.exports = {
 
 
         voiceConfig: {
-            leaveOnFinish: false, //If this variable is "true", the bot will leave the channel the music ends.
-            leaveOnStop: false, //If this variable is "true", the bot will leave the channel when the music is stopped.
-
-            leaveOnEmpty: { //The leaveOnEnd variable must be "false" to use this system.
-                status: true, //If this variable is "true", the bot will leave the channel when the bot is offline.
-                cooldown: 10000000, //1000 = 1 second
-            },
-
         },
-
         maxVol: 200, //You can specify the maximum volume level.
     },
 
 
     sponsor: {
-        status: true, //true or false
-        url: "https://codeshare.me", //write your discord sponsor url.
+        status: false, //true or false
+        url: "", //write your discord sponsor url.
     },
 
 

@@ -1,5 +1,4 @@
 module.exports = (token) => {
-  const mongoose = require("mongoose");
   const { Client, GatewayIntentBits, Partials } = require("discord.js");
   const { DisTube } = require("distube");
   const { SpotifyPlugin } = require("@distube/spotify");
@@ -24,6 +23,9 @@ module.exports = (token) => {
 
   client.config = config;
   client.player = new DisTube(client, {
+    leaveOnStop: config.opt.voiceConfig.leaveOnStop,
+    leaveOnFinish: config.opt.voiceConfig.leaveOnFinish,
+    leaveOnEmpty: config.opt.voiceConfig.leaveOnEmpty.status,
     emitNewSongOnly: true,
     emitAddSongWhenCreatingQueue: false,
     emitAddListWhenCreatingQueue: false,
@@ -91,21 +93,19 @@ module.exports = (token) => {
     }, 2000);
   }
 
-  mongoose.connect(config.mongodbURL || process.env.MONGO).then(async () => {
-    console.log(`Connected MongoDB`);
-  }).catch((err) => {
-    console.log("\nMongoDB Error: " + err + "\n\n" + lang.error4);
-  });
-
-  client.player.on("empty", (queue) => {
-    console.log("Voice channel is empty. Leaving...");
-    setTimeout(() => {
-        if (!queue.voiceChannel.members.size) {
-            queue.stop(); // Stops the queue
-            console.log("Left the voice channel due to inactivity.");
-        }
-    }, 60); // 60000ms = 1 minute
-  });
+  if (config.mongodbURL || process.env.MONGO) {
+    const mongoose = require("mongoose");
+    mongoose.connect(config.mongodbURL || process.env.MONGO, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }).then(async () => {
+      console.log(`Connected MongoDB`);
+    }).catch((err) => {
+      console.log("\nMongoDB Error: " + err + "\n\n" + lang.error4);
+    });
+  } else {
+    console.log(lang.error4);
+  }
 
   return client;
 };

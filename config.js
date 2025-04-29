@@ -15,8 +15,8 @@ module.exports = {
     
 
     playlistSettings: {
-        maxPlaylist: 5, //max playlist count
-        maxMusic: 500, //max music count
+        maxPlaylist: 1, //max playlist count
+        maxMusic: 50, //max music count
     },
 
 
@@ -27,7 +27,16 @@ module.exports = {
 
 
         voiceConfig: {
+            leaveOnFinish: false, //If this variable is "true", the bot will leave the channel the music ends.
+            leaveOnStop: false, //If this variable is "true", the bot will leave the channel when the music is stopped.
+
+            leaveOnEmpty: { //The leaveOnEnd variable must be "false" to use this system.
+                status: true, //If this variable is "true", the bot will leave the channel when the bot is offline.
+                cooldown: 10000000, //1000 = 1 second
+            },
+
         },
+
         maxVol: 200, //You can specify the maximum volume level.
     },
 

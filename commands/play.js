@@ -33,16 +33,17 @@ module.exports = {
     },
   ],
   voiceChannel: true,
-  run: async (client, interaction, lang, db) => {
+  run: async (client, interaction) => {
+    let lang = await db?.musicbot?.findOne({ guildID: interaction.guild.id })
+    lang = lang?.language || client.language
+    lang = require(`../languages/${lang}.js`);
+
     try {
-      const stp = interaction.options.getSubcommand();
-      console.log("Subcommand:", stp); // Log the subcommand
-      console.log("Language:", lang); // Log the language
+      let stp = interaction.options.getSubcommand()
 
       if (stp === "playlist") {
         let playlistw = interaction.options.getString('name')
         let playlist = await db?.playlist?.find().catch(e => { })
-        console.log("Playlist:", playlist); // Log the playlist
         if (!playlist?.length > 0) return interaction.reply({ content: lang.msg52, ephemeral: true }).catch(e => { })
 
         let arr = 0

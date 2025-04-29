@@ -15,7 +15,7 @@ module.exports = {
     
 
     playlistSettings: {
-        maxPlaylist: 5, //max playlist count
+        maxPlaylist: 1, //max playlist count
         maxMusic: 100, //max music count
     },
 

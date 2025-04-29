@@ -6,11 +6,11 @@ module.exports = {
     botInvite: "", //write your discord bot invite.
     supportServer: "", //write your discord bot support server invite.
     mongodbURL: process.env.MONGODB_URL, //write your mongodb url.
-    status: '🎤 Singing',
+    status: 'Debugging', //write your bot status.
     commandsDir: './commands', //Please don't touch
     language: "en", //ar, de, en, es, fr, id, it, ja, nl, pt, ru, tr, zh_TW
     embedColor: "915f3f", //hex color code
-    errorLog: "", //write your discord error log channel id.
+    errorLog: "1318379695393214464", //write your discord error log channel id.
 
     
 

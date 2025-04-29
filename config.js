@@ -6,7 +6,7 @@ module.exports = {
     botInvite: "", //write your discord bot invite.
     supportServer: "", //write your discord bot support server invite.
     mongodbURL: process.env.MONGODB_URL, //write your mongodb url.
-    status: 'Debugging', //write your bot status.
+    status: '', //write your bot status.
     commandsDir: './commands', //Please don't touch
     language: "en", //ar, de, en, es, fr, id, it, ja, nl, pt, ru, tr, zh_TW
     embedColor: "915f3f", //hex color code
